@@ -9948,7 +9948,7 @@ class MainAlgorithm {
 
   setWordsList(wordsList) {
     console.log(this.constructor.name, ": setWordsList", wordsList.slice(0, 4).concat(["..."]));
-    this.inputWordsList = wordsList;
+    this.inputWordsList = wordsList.slice();
   }
 
   getOutputWordList() {
