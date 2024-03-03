@@ -9862,7 +9862,7 @@ class WeightedLetter {
 
   calculateWeight(aggregatedCounters) {
     if (aggregatedCounters !== 0) {
-      this.weight = 1 - (this.counter / aggregatedCounters);
+      this.weight = 1.001 - (this.counter / aggregatedCounters);
     } else {
       this.weight = 1;
     }
