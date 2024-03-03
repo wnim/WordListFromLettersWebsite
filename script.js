@@ -10087,7 +10087,7 @@ function updateStatus(status) {
     statusElement.textContent = "Word retrieval Successful";
     statusElement.style.color = "green";
   } else {
-    statusElement.textContent = "Word retrieval Failed: Read input rules at the bottom of the page";
+    statusElement.textContent = "Word retrieval Failed: Insert at least one English letter";
     statusElement.style.color = "red";
   }
 }
