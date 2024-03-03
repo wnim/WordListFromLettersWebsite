@@ -9881,10 +9881,12 @@ class UserInputProcessor {
   }
 
   setUserInput(userInput) {
-    // Convert uppercase letters to lowercase for processing
-    this.userInput = userInput.toLowerCase();
+    // Remove non-English letters, convert uppercase to lowercase, remove redundancies, and sort alphabetically
+    this.userInput = [...new Set(userInput.replace(/[^a-zA-Z]/g, '').toLowerCase())].sort().join('');
+
     // Update the value in the input box
     document.getElementById("inputBox").value = this.userInput;
+
     // Reset status before checking input validity
     this.status = "success";
     this.checkInputValidity();
@@ -9899,34 +9901,18 @@ class UserInputProcessor {
   }
 
   checkInputValidity() {
-    // Check if the input is in the format of single characters separated by single spaces
-    const formatPattern = /^[a-z](?:\s[a-z])*$/;
-    if (!formatPattern.test(this.userInput.trim())) {
+    // Check if there is at least one English letter
+    if (this.userInput.length === 0) {
       this.status = "failure";
-    }
-    else {
+    } else {
       // Translate the user input to an array of characters
-      this.lettersArray = this.userInput.split(/\s+/);
+      this.lettersArray = this.userInput.split('');
 
-      // Check if the characters are unique
-      if (new Set(this.lettersArray).size !== this.lettersArray.length) {
-        this.status = "failure";
-      }
-      else {
-        // Check if the characters are lowercase English letters
-        const englishPattern = /^[a-z]+$/;
-        for (const char of this.lettersArray) {
-          if (!englishPattern.test(char)) {
-            this.status = "failure";
-            return;
-          }
-        }
-
-        // All checks passed, set status to success
-        this.status = "success";
-      }
+      // All checks passed, set status to success
+      this.status = "success";
     }
   }
+
 }
 
 class MainAlgorithm {
