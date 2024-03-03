@@ -10098,10 +10098,10 @@ function updateStatus(status) {
 
   // Set the status message and color based on success or failure
   if (status === "success") {
-    statusElement.textContent = "Calculation Successful";
+    statusElement.textContent = "Word retrieval Successful";
     statusElement.style.color = "green";
   } else {
-    statusElement.textContent = "Calculation Failed";
+    statusElement.textContent = "Word retrieval Failed: Read input rules at the bottom of the page";
     statusElement.style.color = "red";
   }
 }
