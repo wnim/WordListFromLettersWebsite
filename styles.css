@@ -37,6 +37,12 @@ button:hover {
     background-color: #2980b9; /* Darker blue on hover */
 }
 
+/* Add focus style for the button */
+button:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5); /* Add custom box shadow */
+}
+
 #output {
     margin-top: 20px;
     padding: 12px;
@@ -68,4 +74,11 @@ button:hover {
 
 #dropdown:hover {
     background-color: #add0e7; /* Darker blue on hover */
+}
+
+ /* Add focus style for the dropdown */
+select:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: rgba(0, 0, 0, 0.5); /* Change border color when focused */
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5); /* Add custom box shadow when focused */
 }
