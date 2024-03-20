@@ -43,14 +43,14 @@ button:focus {
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5); /* Add custom box shadow */
 }
 
-#output {
+.output {
     margin-top: 20px;
     padding: 12px;
     font-size: 16px; /* Adjust the font size as needed */
     border: 2px solid #ccc;
     width: 100%;
     max-width: 900px;
-    height: 350px;
+    height: 250px;
 }
 
 #plainText ul {

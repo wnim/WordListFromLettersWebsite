@@ -13,25 +13,24 @@
         <h4>Enter English letters and receive<br>
             words that based on your criteria</h4>
         <div class="input-container">
-            <!-- Dropdown -->
             <select id="dropdown">
                 <option value="letters">Letters</option>
-                <option value="ngrams">Ngrams</option>
+                <option value="ngram">Ngram</option>
             </select>
-            <!-- Input Box -->
             <input type="text" id="inputBox" placeholder="Enter value">
         </div>
-        <!-- Calculate Button -->
         <button id="calculateButton">Get words</button>
-        <!-- Status Line -->
         <div id="status"></div>
-        <!-- Output Box (Non-editable) -->
-        <textarea id="output" readonly></textarea>
+        <textarea id="output" class="output" readonly></textarea>
         <div class="button-container">
-            <!-- Clear Output Button -->
+            <button id="Append">Append</button>
             <button id="clearButton">Clear Output</button>
-            <!-- Copy Text Button -->
             <button id="copyButton">Copy Text</button>
+        </div>
+        <textarea id="output2" class="output" readonly></textarea>
+        <div class="button-container">
+            <button id="clearButton2">Clear Output</button>
+            <button id="copyButton2">Copy Text</button>
         </div>
         <a href="https://www.monkeytype.com" target="_blank">monkeytype</a>
     </div>
