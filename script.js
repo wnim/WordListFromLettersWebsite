@@ -5,6 +5,7 @@ import { LettersUserInputProcessor, NgramUserInputProcessor } from './UserInputP
 import { LettersMainAlgorithm, NgramMainAlgorithm } from './MainAlgorithm.js'
 
 let dropdown = document.getElementById('dropdown').value;
+let dropdown2 = document.getElementById('dropdown2').value;
 
 const calculateButton = document.getElementById('calculateButton');  // Get a reference to the "Get words" button
 calculateButton.addEventListener('click', calculate);  // Attach the event listener for the "Get words" button
@@ -12,23 +13,15 @@ calculateButton.addEventListener('click', calculate);  // Attach the event liste
 const clearButton = document.getElementById('clearButton');  // Get a reference to the "Clear Output" button
 clearButton.addEventListener('click', clearOutput);  // Attach the event listener for the "Clear Output" button
 
-const clearButton2 = document.getElementById('clearButton2');  // Get a reference to the "Clear Output" button
-clearButton2.addEventListener('click', clearOutput2);  // Attach the event listener for the "Clear Output" button
-
 const copyButton = document.getElementById('copyButton');  // Get a reference to the "Copy Text" button
 copyButton.addEventListener('click', copyText);  // Attach the event listener for the "Copy Text" button
-
-const copyButton2 = document.getElementById('copyButton2');  // Get a reference to the "Copy Text" button
-copyButton2.addEventListener('click', copyText2);  // Attach the event listener for the "Copy Text" button
-
-const appendButton = document.getElementById('Append');
-appendButton.addEventListener('click', appendTextToOutput2)
 
 // Function to perform the calculation
 function calculate() {
   let userInputProcessor;
   let mainAlgorithm;
   dropdown = document.getElementById('dropdown').value;
+  dropdown2 = document.getElementById('dropdown2').value;
   console.log(dropdown)
   switch (dropdown) {
     case "letters":
@@ -48,9 +41,17 @@ function calculate() {
   var wordCountUpperLimit = document.getElementById("wordCountUpperLimit").value;
   // Create output for the user
   var result = performCalculation(inputLetters, userInputProcessor, mainAlgorithm, wordCountUpperLimit);
-  // Set the value to the output box
-  document.getElementById("output").value = result;
 
+  // Set the value to the output box
+  switch (dropdown2) {
+    case "replace":
+      document.getElementById("output").value = result;
+    case "append":
+      let curr_val = document.getElementById("output").value;
+       document.getElementById("output").value = result + " " + curr_val;
+    default:
+      throw new Error("unknown type", dropdown2);
+  }
 }
 
 // Function to perform the actual calculation (modify this based on your needs)
@@ -96,20 +97,3 @@ function clearOutput() {
   document.getElementById("status").textContent = "";
 }
 
-function copyText2() {
-  var outputBox = document.getElementById("output2");
-  outputBox.select();
-  outputBox.setSelectionRange(0, 99999); /* For mobile devices */
-  document.execCommand("copy");
-  outputBox.setSelectionRange(0, 0);
-}
-
-function clearOutput2() {
-  document.getElementById("output2").value = "";
-}
-
-function appendTextToOutput2() {
-  let currOutput = document.getElementById("output").value;
-  let currOutput2 = document.getElementById("output2").value;
-  document.getElementById("output2").value = currOutput2 + " " + currOutput;
-}

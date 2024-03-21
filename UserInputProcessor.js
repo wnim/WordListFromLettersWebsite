@@ -13,7 +13,7 @@ class BaseUserInputProcessor {
     // Remove trailing zeros
     this.wordCountUpperLimit = this.wordCountUpperLimit.toString().replace(/^0+/, '');
     // If the result is 0 or empty, change to 200
-    if (this.wordCountUpperLimit === '') {
+    if (isNaN(this.wordCountUpperLimit) || this.wordCountUpperLimit === '') {
       this.wordCountUpperLimit = 200;
     }
     if (this.wordCountUpperLimit > 9000) {
@@ -40,8 +40,9 @@ class BaseUserInputProcessor {
 }
 
 class NgramUserInputProcessor extends BaseUserInputProcessor {
+
   setUserInput(inputLetters, wordCountUpperLimit) {
-    super.setUserInput(wordCountUpperLimit)
+    super.setUserInput(inputLetters, wordCountUpperLimit);
     // Remove non-English letters, convert uppercase to lowercase
     // this.inputLetters = [...new Set(inputLetters.replace(/[^a-zA-Z]/g, '').toLowerCase())].join('');
     this.inputLetters = inputLetters.replace(/[^a-zA-Z]/g, '').toLowerCase();
