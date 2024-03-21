@@ -84,3 +84,17 @@ select:focus {
   border-color: rgba(0, 0, 0, 0.5); /* Change border color when focused */
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5); /* Add custom box shadow when focused */
 }
+
+.checkbox-container {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 5px; /* Adjust the spacing between the checkbox and text */
+}
+
+/*Why is this not working?*/
+#wordCountUpperLimit[disabled] {
+  color: #9a1313 !important;
+}

@@ -81,6 +81,21 @@ class BaseMainAlgorithm {
 
 }
 
+class TrivialMainAlgorithm extends BaseMainAlgorithm{
+  constructor() {
+    super();
+  }
+
+  manipulateInput(lettersList) {
+  }
+
+  run() {
+    // this.getOutputWordList = this.lettersList;
+    this.outputWordsList = this.lettersList.split(/\s+/).filter(word => word.trim() !== '');
+  }
+
+}
+
 class NgramMainAlgorithm extends BaseMainAlgorithm {
 
   constructor() {
@@ -89,7 +104,6 @@ class NgramMainAlgorithm extends BaseMainAlgorithm {
   }
 
   manipulateInput(lettersList) {
-    // this.regex = lettersList.join('')
     this.regex = new RegExp(lettersList.join(''));
     console.log(get_ln(), this.constructor.name, "regex = ", this.regex)
   }
@@ -197,4 +211,4 @@ class LettersMainAlgorithm extends BaseMainAlgorithm {
   }
 }
 
-export { NgramMainAlgorithm, LettersMainAlgorithm }
+export { NgramMainAlgorithm, LettersMainAlgorithm, TrivialMainAlgorithm}

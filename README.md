@@ -10,3 +10,4 @@ https://fascinating-travesseiro-a096a8.netlify.app/
 - [ ] 2nd Improvement to the first algorithm - A word should be worth more if it has less useless letters. Like a secondary scoring in case multiple words are worth the same. 
 - [ ] Create immediate response upon letter entry
 - [ ] Add a "free form text" option
+- [ ] Undo/Redo buttons

@@ -9,13 +9,14 @@
 </head>
 
 <body>
-    <div class="container">
-        <h4>Enter English letters and receive<br>
+    <div class="container" id="inputContainer">
+        <h4>Enter English input and receive<br>
             words that based on your criteria</h4>
         <div class="input-container">
             <select id="dropdown">
                 <option value="letters">Letters</option>
                 <option value="ngram">Ngram</option>
+                <option value="free">Free Text</option>
             </select>
             <input type="text" id="inputBox" placeholder="Enter English Letters">
         </div>
@@ -26,11 +27,16 @@
             </select>
             <input type="text" id="wordCountUpperLimit" placeholder="Word Count : default 200">
         </div>
+        <div class="checkbox-container">
+            <input type="checkbox" id="myCheckbox" checked>
+            <label for="myCheckbox">Remove duplicate words</label>
+        </div>
+
         <button id="calculateButton">Get words</button>
         <div id="status"></div>
         <textarea id="output" class="output" readonly></textarea>
+        <div id="dynamicTextContainer"></div>
         <div class="button-container">
-            <button id="Append">Append</button>
             <button id="clearButton">Clear Output</button>
             <button id="copyButton">Copy Text</button>
         </div>

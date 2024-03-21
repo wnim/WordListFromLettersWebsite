@@ -39,6 +39,12 @@ class BaseUserInputProcessor {
 
 }
 
+class TrivialUserInputProcessor extends BaseUserInputProcessor {
+  setUserInput(inputLetters, wordCountUpperLimit) {
+    this.editedUserInput = inputLetters;
+  }
+}
+
 class NgramUserInputProcessor extends BaseUserInputProcessor {
 
   setUserInput(inputLetters, wordCountUpperLimit) {
@@ -100,4 +106,4 @@ class LettersUserInputProcessor extends BaseUserInputProcessor {
 
 }
 
-export { NgramUserInputProcessor, LettersUserInputProcessor }
+export { NgramUserInputProcessor, LettersUserInputProcessor, TrivialUserInputProcessor}
