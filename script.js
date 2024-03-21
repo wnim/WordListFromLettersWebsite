@@ -11,11 +11,17 @@ const calculateButton = document.getElementById('calculateButton');  // Get a re
 calculateButton.addEventListener('click', calculate);  // Attach the event listener for the "Get words" button
 
 const inputBox = document.getElementById('inputBox');
-// const calculateButton = document.getElementById('calculateButton');
+const wordCountUpperLimitBox = document.getElementById('wordCountUpperLimit');
 
 inputBox.addEventListener('keydown', function(event) {
     if (event.keyCode === 13) { // Check if Enter key is pressed
         calculateButton.click(); // Trigger click event on the "Get words" button
+    }
+});
+
+wordCountUpperLimitBox.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) { // Check if Enter key is pressed
+        calculateButton.click();
     }
 });
 
