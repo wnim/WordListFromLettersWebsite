@@ -81,7 +81,7 @@ class BaseMainAlgorithm {
 
 }
 
-class TrivialMainAlgorithm extends BaseMainAlgorithm{
+class TrivialMainAlgorithm extends BaseMainAlgorithm {
   constructor() {
     super();
   }
@@ -110,7 +110,14 @@ class NgramMainAlgorithm extends BaseMainAlgorithm {
 
   run() {
     this.assertArraysNotEmpty();
-    this.outputWordsList.push(...this.inputWordsList.filter(word => this.regex.test(word)).slice(0, this.wordCountUpperLimit));
+    console.log(get_ln(), this.constructor.name, "wordCountLimit", this.wordCountLimit)
+    // Filter words from inputWordsList based on regex
+    const filteredWords = this.inputWordsList.filter(word => this.regex.test(word));
+    // Slice the filtered words to wordCountLimit
+    const slicedWords = filteredWords.slice(0, this.wordCountLimit);
+    // Push sliced words to outputWordsList
+    this.outputWordsList.push(...slicedWords);
+    console.log(get_ln(), this.constructor.name, "sliceWords", slicedWords)
   }
 
 }
@@ -211,4 +218,4 @@ class LettersMainAlgorithm extends BaseMainAlgorithm {
   }
 }
 
-export { NgramMainAlgorithm, LettersMainAlgorithm, TrivialMainAlgorithm}
+export { NgramMainAlgorithm, LettersMainAlgorithm, TrivialMainAlgorithm }
