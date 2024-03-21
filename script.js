@@ -76,10 +76,10 @@ function calculate() {
   }
 
   // Get the value from the input box
-  var inputLetters = document.getElementById("inputBox").value;
-  var wordCountUpperLimit = document.getElementById("wordCountUpperLimit").value;
+  let inputLetters = document.getElementById("inputBox").value;
+  let wordCountUpperLimit = document.getElementById("wordCountUpperLimit").value;
   // Create output for the user
-  var result = performCalculation(inputLetters, userInputProcessor, mainAlgorithm, wordCountUpperLimit);
+  let result = performCalculation(inputLetters, userInputProcessor, mainAlgorithm, wordCountUpperLimit);
 
   // Set the value to the output box
   console.log(replaceAppendDropdownVal)
@@ -127,7 +127,7 @@ function performCalculation(inputLetters, userInputProcessor, mainAlgorithm, wor
 
 // Function to update the status
 function updateStatus(status) {
-  var statusElement = document.getElementById("status");
+  let statusElement = document.getElementById("status");
 
   // Set the status message and color based on success or failure
   if (status === "success") {
@@ -141,7 +141,7 @@ function updateStatus(status) {
 
 // Function to copy text from the output box - ChatGPT generated
 function copyText() {
-  var outputBox = document.getElementById("output");
+  let outputBox = document.getElementById("output");
   outputBox.select();
   outputBox.setSelectionRange(0, 99999); /* For mobile devices */
   document.execCommand("copy");
