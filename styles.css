@@ -63,7 +63,8 @@ button:focus {
     list-style-type: disc;
 }
 
-#dropdown {
+#dropdown, 
+#dropdown2 {
     margin-left: 5px; /* Adjust the margin as needed */
     font-size: 18px; /* Set font size to match input box */
     padding: 12px; /* Set padding to match input box */
@@ -72,7 +73,8 @@ button:focus {
     outline: none; /* Remove default outline */
 }
 
-#dropdown:hover {
+#dropdown:hover,
+#dropdown2:hover {
     background-color: #add0e7; /* Darker blue on hover */
 }
 

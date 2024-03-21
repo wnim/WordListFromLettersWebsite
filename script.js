@@ -44,22 +44,24 @@ function calculate() {
   }
 
   // Get the value from the input box
-  var inputValue = document.getElementById("inputBox").value;
+  var inputLetters = document.getElementById("inputBox").value;
+  var wordCountUpperLimit = document.getElementById("wordCountUpperLimit").value;
   // Create output for the user
-  var result = performCalculation(inputValue, userInputProcessor, mainAlgorithm);
+  var result = performCalculation(inputLetters, userInputProcessor, mainAlgorithm, wordCountUpperLimit);
   // Set the value to the output box
   document.getElementById("output").value = result;
 
 }
 
 // Function to perform the actual calculation (modify this based on your needs)
-function performCalculation(inputValue, userInputProcessor, mainAlgorithm) {
+function performCalculation(inputLetters, userInputProcessor, mainAlgorithm, wordCountUpperLimit) {
   // let userInputProcessor = new LettersUserInputProcessor();
-  userInputProcessor.setUserInput(inputValue);
+  userInputProcessor.setUserInput(inputLetters, wordCountUpperLimit);
   userInputProcessor.checkInputValidity();
   updateStatus(userInputProcessor.getStatus());
   // let mainAlgorithm = new LettersMainAlgorithm();
-  mainAlgorithm.setLettersList(userInputProcessor.getUserInput())
+  mainAlgorithm.setLettersList(userInputProcessor.getUserLetters())
+  mainAlgorithm.setWordCountLimit(userInputProcessor.getWordCountUpperLimit())
   mainAlgorithm.setWordsList(en10kArr)
   mainAlgorithm.run()
   return mainAlgorithm.getOutputWordList().join(' ')

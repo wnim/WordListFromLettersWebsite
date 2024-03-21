@@ -17,7 +17,14 @@
                 <option value="letters">Letters</option>
                 <option value="ngram">Ngram</option>
             </select>
-            <input type="text" id="inputBox" placeholder="Enter value">
+            <input type="text" id="inputBox" placeholder="Enter English Letters">
+        </div>
+        <div class="input-container">
+            <select id="dropdown2">
+                <option value="replace">Replace</option>
+                <option value="append">Append</option>
+            </select>
+            <input type="text" id="wordCountUpperLimit" placeholder="Word Count : default 200">
         </div>
         <button id="calculateButton">Get words</button>
         <div id="status"></div>

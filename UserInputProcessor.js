@@ -2,15 +2,31 @@ import { get_ln } from "./get_ln.js";
 
 class BaseUserInputProcessor {
   constructor() {
-    this.userInput = "";
+    this.inputLetters = "";
     this.editedUserInput = [];
     this.status = "success";
+    this.wordCountUpperLimit;
   }
 
-  setUserInput(userInput) {
+  setUserInput(inputLetters, wordCountUpperLimit) {
+    this.wordCountUpperLimit = parseInt(wordCountUpperLimit.replace(/\D+/g, ''), 10);
+    // Remove trailing zeros
+    this.wordCountUpperLimit = this.wordCountUpperLimit.toString().replace(/^0+/, '');
+    // If the result is 0 or empty, change to 200
+    if (this.wordCountUpperLimit === '') {
+      this.wordCountUpperLimit = 200;
+    }
+    if (this.wordCountUpperLimit > 9000) {
+      this.wordCountUpperLimit = 9000;
+    }
+    document.getElementById("wordCountUpperLimit").value = this.wordCountUpperLimit;
   }
 
-  getUserInput() {
+  getWordCountUpperLimit() {
+    return this.wordCountUpperLimit;
+  }
+
+  getUserLetters() {
     return this.editedUserInput;
   }
 
@@ -24,13 +40,14 @@ class BaseUserInputProcessor {
 }
 
 class NgramUserInputProcessor extends BaseUserInputProcessor {
-  setUserInput(userInput) {
+  setUserInput(inputLetters, wordCountUpperLimit) {
+    super.setUserInput(wordCountUpperLimit)
     // Remove non-English letters, convert uppercase to lowercase
-    // this.userInput = [...new Set(userInput.replace(/[^a-zA-Z]/g, '').toLowerCase())].join('');
-    this.userInput = userInput.replace(/[^a-zA-Z]/g, '').toLowerCase();
+    // this.inputLetters = [...new Set(inputLetters.replace(/[^a-zA-Z]/g, '').toLowerCase())].join('');
+    this.inputLetters = inputLetters.replace(/[^a-zA-Z]/g, '').toLowerCase();
 
     // Update the value in the input box
-    document.getElementById("inputBox").value = this.userInput;
+    document.getElementById("inputBox").value = this.inputLetters;
 
     // Reset status before checking input validity
     this.status = "success";
@@ -39,11 +56,11 @@ class NgramUserInputProcessor extends BaseUserInputProcessor {
 
   checkInputValidity() {
     // Check if there is at least one English letter
-    if (this.userInput.length < 2) {
+    if (this.inputLetters.length < 2) {
       this.status = "failure";
     } else {
       // Translate the user input to an array of characters
-      this.editedUserInput = this.userInput.split('');
+      this.editedUserInput = this.inputLetters.split('');
 
       // All checks passed, set status to success
       this.status = "success";
@@ -54,12 +71,13 @@ class NgramUserInputProcessor extends BaseUserInputProcessor {
 
 class LettersUserInputProcessor extends BaseUserInputProcessor {
 
-  setUserInput(userInput) {
+  setUserInput(inputLetters, wordCountUpperLimit) {
+    super.setUserInput(inputLetters, wordCountUpperLimit);
     // Remove non-English letters, convert uppercase to lowercase, remove redundancies, and sort alphabetically
-    this.userInput = [...new Set(userInput.replace(/[^a-zA-Z]/g, '').toLowerCase())].sort().join('');
+    this.inputLetters = [...new Set(inputLetters.replace(/[^a-zA-Z]/g, '').toLowerCase())].sort().join('');
 
     // Update the value in the input box
-    document.getElementById("inputBox").value = this.userInput;
+    document.getElementById("inputBox").value = this.inputLetters;
 
     // Reset status before checking input validity
     this.status = "success";
@@ -68,11 +86,11 @@ class LettersUserInputProcessor extends BaseUserInputProcessor {
 
   checkInputValidity() {
     // Check if there is at least one English letter
-    if (this.userInput.length === 0) {
+    if (this.inputLetters.length === 0) {
       this.status = "failure";
     } else {
       // Translate the user input to an array of characters
-      this.editedUserInput = this.userInput.split('');
+      this.editedUserInput = this.inputLetters.split('');
 
       // All checks passed, set status to success
       this.status = "success";
@@ -81,4 +99,4 @@ class LettersUserInputProcessor extends BaseUserInputProcessor {
 
 }
 
-export {NgramUserInputProcessor, LettersUserInputProcessor}
+export { NgramUserInputProcessor, LettersUserInputProcessor }

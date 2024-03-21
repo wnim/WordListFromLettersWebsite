@@ -53,6 +53,10 @@ class BaseMainAlgorithm {
     this.manipulateInput(lettersList)
   }
 
+  setWordCountLimit(WordCountLimit) {
+    this.wordCountLimit = WordCountLimit;
+  }
+
   setWordsList(wordsList) {
     console.log(this.constructor.name, ": setWordsList", wordsList.slice(0, 4).concat(["..."]));
     this.inputWordsList = wordsList.slice();
@@ -92,7 +96,7 @@ class NgramMainAlgorithm extends BaseMainAlgorithm {
 
   run() {
     this.assertArraysNotEmpty();
-    this.outputWordsList.push(...this.inputWordsList.filter(word => this.regex.test(word)));
+    this.outputWordsList.push(...this.inputWordsList.filter(word => this.regex.test(word)).slice(0, this.wordCountUpperLimit));
   }
 
 }
@@ -116,7 +120,7 @@ class LettersMainAlgorithm extends BaseMainAlgorithm {
   run() {
     this.assertArraysNotEmpty();
     let counter = 0;
-    while (this.outputWordsList.length < 200) {
+    while (this.outputWordsList.length < this.wordCountLimit) {
       counter += 1;
       this.addNewWordToOutputList();
       console.log(get_ln(), this.constructor.name, "Iteration = ", counter);
