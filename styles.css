@@ -94,7 +94,9 @@ select:focus {
     margin-right: 5px; /* Adjust the spacing between the checkbox and text */
 }
 
-/*Why is this not working?*/
-#wordCountUpperLimit[disabled] {
-  color: #9a1313 !important;
+
+/* CSS for the disabled input box */
+#wordCountUpperLimit:disabled {
+    background-color: #bebebe; /* Light grey background */
+    color: #ffffff; /* Grey text color */
 }
