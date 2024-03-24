@@ -5,6 +5,7 @@ class BaseUserInputProcessor {
     this.inputLetters = "";
     this.editedUserInput = [];
     this.status = "success";
+    this.statusMessage = "Word retrival successuful";
     this.wordCountUpperLimit;
   }
 
@@ -31,7 +32,7 @@ class BaseUserInputProcessor {
   }
 
   getStatus() {
-    return this.status;
+    return [ this.status, this.statusMessage ]
   }
 
   checkInputValidity() {
@@ -65,6 +66,7 @@ class NgramUserInputProcessor extends BaseUserInputProcessor {
     // Check if there is at least one English letter
     if (this.inputLetters.length < 2) {
       this.status = "failure";
+      this.statusMessage = "Insert at least two letters"
     } else {
       // Translate the user input to an array of characters
       this.editedUserInput = this.inputLetters.split('');
@@ -95,6 +97,7 @@ class LettersUserInputProcessor extends BaseUserInputProcessor {
     // Check if there is at least one English letter
     if (this.inputLetters.length === 0) {
       this.status = "failure";
+      this.statusMessage = "Insert at least one letter"
     } else {
       // Translate the user input to an array of characters
       this.editedUserInput = this.inputLetters.split('');

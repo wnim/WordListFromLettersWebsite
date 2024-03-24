@@ -126,15 +126,14 @@ function performCalculation(inputLetters, userInputProcessor, mainAlgorithm, wor
 }
 
 // Function to update the status
-function updateStatus(status) {
+function updateStatus([status, message]) {
   let statusElement = document.getElementById("status");
 
   // Set the status message and color based on success or failure
+  statusElement.textContent = message;
   if (status === "success") {
-    statusElement.textContent = "Word retrieval Successful";
     statusElement.style.color = "green";
   } else {
-    statusElement.textContent = "Word retrieval Failed: Insert more letters";
     statusElement.style.color = "red";
   }
 }
@@ -151,5 +150,6 @@ function copyText() {
 function clearOutput() {
   document.getElementById("output").value = "";
   document.getElementById("status").textContent = "";
+  dynamicTextContainer.textContent = "Word count is: " + "0";
 }
 
