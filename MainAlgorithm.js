@@ -54,6 +54,7 @@ class BaseMainAlgorithm {
   }
 
   setWordCountLimit(WordCountLimit) {
+    console.log(this.constructor.name, ": setWordCountLimit ", WordCountLimit);
     this.wordCountLimit = WordCountLimit;
   }
 
@@ -218,4 +219,31 @@ class LettersMainAlgorithm extends BaseMainAlgorithm {
   }
 }
 
-export { NgramMainAlgorithm, LettersMainAlgorithm, TrivialMainAlgorithm }
+class AvoidLettersMainAlgorithm extends BaseMainAlgorithm {
+
+  // Function to check if a word contains any of the letters
+  containsAnyLetters(word, lettersList) {
+    for (const letter of lettersList) {
+      if (word.includes(letter)) {
+        return true; // Return true if any letter is found in the word
+      }
+    }
+    return false; // Return false if none of the letters are found
+  }
+
+  run() {
+    console.log(this.constructor.name, ": run");
+    for (const word of this.inputWordsList) {
+      if (!this.containsAnyLetters(word, this.lettersList)) {
+        this.outputWordsList.push(word);
+        console.log(get_ln(), this.constructor.name, ": run: ", this.outputWordsList.length, " ", this.wordCountLimit);
+        if (this.outputWordsList.length > this.wordCountLimit - 1) { //comparison didn't work, don't ask me why
+          break; // Stop iterating if the word count limit is reached
+        }
+      }
+    }
+  }
+
+}
+
+export { NgramMainAlgorithm, LettersMainAlgorithm, AvoidLettersMainAlgorithm, TrivialMainAlgorithm }
