@@ -1,8 +1,8 @@
 //todo: Create input class factory, algorithm factory, and the algorithm for ngrams
 import { get_ln } from './get_ln.js'
 import { en10kArr } from './en_10k.js'
-import { LettersUserInputProcessor, NgramUserInputProcessor, TrivialUserInputProcessor} from './UserInputProcessor.js'
-import { LettersMainAlgorithm, NgramMainAlgorithm, TrivialMainAlgorithm } from './MainAlgorithm.js'
+import { LettersUserInputProcessor, NgramUserInputProcessor, TrivialUserInputProcessor } from './UserInputProcessor.js'
+import { LettersMainAlgorithm, NgramMainAlgorithm, AvoidLettersMainAlgorithm, TrivialMainAlgorithm } from './MainAlgorithm.js'
 
 let inputDropdownVal = document.getElementById('dropdown').value;
 let replaceAppendDropdownVal = document.getElementById('dropdown2').value;
@@ -13,16 +13,16 @@ calculateButton.addEventListener('click', calculate);  // Attach the event liste
 const inputBox = document.getElementById('inputBox');
 const wordCountUpperLimitBox = document.getElementById('wordCountUpperLimit');
 
-inputBox.addEventListener('keydown', function(event) {
-    if (event.keyCode === 13) { // Check if Enter key is pressed
-        calculateButton.click(); // Trigger click event on the "Get words" button
-    }
+inputBox.addEventListener('keydown', function (event) {
+  if (event.keyCode === 13) { // Check if Enter key is pressed
+    calculateButton.click(); // Trigger click event on the "Get words" button
+  }
 });
 
-wordCountUpperLimitBox.addEventListener('keydown', function(event) {
-    if (event.keyCode === 13) { // Check if Enter key is pressed
-        calculateButton.click();
-    }
+wordCountUpperLimitBox.addEventListener('keydown', function (event) {
+  if (event.keyCode === 13) { // Check if Enter key is pressed
+    calculateButton.click();
+  }
 });
 
 const clearButton = document.getElementById('clearButton');  // Get a reference to the "Clear Output" button
@@ -66,6 +66,10 @@ function calculate() {
     case "ngram":
       userInputProcessor = new NgramUserInputProcessor();
       mainAlgorithm = new NgramMainAlgorithm();
+      break;
+    case "avoid":
+      userInputProcessor = new LettersUserInputProcessor();
+      mainAlgorithm = new AvoidLettersMainAlgorithm();
       break;
     case "free":
       userInputProcessor = new TrivialUserInputProcessor();
@@ -152,4 +156,5 @@ function clearOutput() {
   document.getElementById("status").textContent = "";
   dynamicTextContainer.textContent = "Word count is: " + "0";
 }
+
 
